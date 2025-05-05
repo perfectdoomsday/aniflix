@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search Anime</h2>
+<form method="GET" class="row g-3 mb-3">
+    <div class="col-md-6">
+        <input name="q" class="form-control" placeholder="Search by name">
+    </div>
+    <div class="col-md-3">
+        <input name="year" class="form-control" placeholder="Filter by year">
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+    </div>
+</form>
+<ul class="list-group">
+    {% for anime in animes %}
+        <li class="list-group-item">
+            <a href="{{ url_for('main.watch', anime_id=anime.id) }}">{{ anime.name }} ({{ anime.year }})</a>
+        </li>
+    {% else %}
+        <li class="list-group-item">No results found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
